@@ -25,7 +25,7 @@ jobs:
           uses: appleboy/ssh-action@v1.0.3
           with:
              username: ${{secrets.EC2_NAME}}
-             hostname: ${{secrets.EC2_HOST}}
+             host: ${{secrets.EC2_HOST}}
              password: ${{secrets.EC2_PASS}}
              scripts: |
                 rm -rf /opt/ci-cd
