@@ -1,0 +1,25 @@
+{
+  "name": "ci-cd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Test passed\"",
+    "start": "node app.js"
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SASIKUMAR2002/ci-cd.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SASIKUMAR2002/ci-cd/issues"
+  },
+  "homepage": "https://github.com/SASIKUMAR2002/ci-cd#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
