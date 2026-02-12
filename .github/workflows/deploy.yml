@@ -1,47 +1,35 @@
-name : Deploy to my machine
+name: Deploy Node App
 
 on:
- push:
+  push:
     branches:
-        - main
-        
- 
+      - main
+
 jobs:
   deploy:
-    runs-on : ubuntu-latest
-    
-    
+    runs-on: ubuntu-latest
+
     steps:
-        - name: Downloading code
-          uses: actions/checkout@v4
-        
-        - name: Install depenedencies
-          run: npm install
-        
-        - name: Test npm
-          run: npm test
-          
-        - name: Deploy to EC2 
-          uses: appleboy/ssh-action@v1.0.3
-          with:
-             username: ${{secrets.EC2_NAME}}
-             host: ${{secrets.EC2_HOST}}
-             password: ${{secrets.EC2_PASS}}
-             scripts: |
-                rm -rf /opt/ci-cd
-                git clone -b main https://github.com/SASIKUMAR2002/ci-cd.git /opt/ci-cd
-                cd /opt/ci-cd
-                npm install
-                pm2 delete app || true
-                pm2 start app.js --name app
-                
-                
-             
-           
-          
-          
-        
-                
-    
- 
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_NAME }}
+          password: ${{ secrets.EC2_PASS }}
+          script: |
+            rm -rf /home/ubuntu/ci-cd
+            git clone https://github.com/SASIKUMAR2002/ci-cd.git
+            cd /home/ubuntu/ci-cd
+            npm install
+            pm2 delete app || true
+            pm2 start app.js --name app
 
