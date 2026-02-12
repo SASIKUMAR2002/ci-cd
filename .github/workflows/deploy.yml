@@ -13,7 +13,7 @@ jobs:
     
     steps:
         - name: Downloading code
-          uses: checkout@v4
+          uses: actions/checkout@v4
         
         - name: Install depenedencies
           run: npm Install
